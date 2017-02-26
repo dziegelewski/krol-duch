@@ -1,0 +1,20 @@
+.fastStateContainer {
+	position: absolute;
+	top: 36%;
+	width: 100%;
+	display: none;
+
+	p {
+		color: #80A6D3;
+		text-align: center;
+		background-color: rgba(206,9,5,0.7);
+		margin: 0 200px;
+		border-radius: 5px;
+		padding: 2px 10px;
+	
+		&:first-letter {
+			text-transform: uppercase;
+		}
+
+	}
+}

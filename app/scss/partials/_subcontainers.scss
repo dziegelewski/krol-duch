@@ -1,0 +1,65 @@
+.heroContainer, #options, .statsContainer, .consolesContainer, .mercenariesContainer, .inventoryContainer, .eagleContainer, #health, .fogContainer, .fastStateContainer {
+  position: absolute;
+}
+
+$bottomSpace: 40px;
+
+.statsContainer {
+  width: 360px;
+  height: 210px;
+  top: 10px;
+  left: 10px;
+}
+
+.eagleContainer {
+  top: 50px;
+  height: 165px;
+  width: 212px;
+  bottom: 160px;
+  left: 389px;
+}
+
+.consolesContainer {
+  height: 210px;
+  width: 360px;
+  right: 10px;
+  top: 10px;
+}
+
+.mercenariesContainer {
+  width: 410px;
+  height: 325px;
+  bottom: $bottomSpace;
+  left: 10px;
+}
+
+.inventoryContainer {
+  height: 325px;
+  width: 410px;
+  right: 10px;
+  bottom: $bottomSpace;
+}
+
+.heroContainer {
+  width: 144px;
+  height: 325px;
+  bottom: $bottomSpace;
+  left: 417px;
+}
+
+#health {
+  border: none;
+  bottom: 1003px;
+  left: 10px;
+  height: 25px;
+  bottom: 5px;
+  background: url("../images/lifebar.png") no-repeat;
+
+    &.nokturn {
+  background: url("../images/blackbar.png") no-repeat;
+  }
+}
+
+.fastStateContainer {
+
+}

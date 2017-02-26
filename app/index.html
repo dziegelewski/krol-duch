@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset = "utf-8">
+<title>Król-Duch</title>
+<link rel="stylesheet" type="text/css" href='css/style.css'>
+<link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Autour+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="Shortcut icon" href="images/icon.png" />
+</head>
+<body onselectstart="return false;">
+  
+
+<div class="container">
+
+<!-- 0. Loader -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+  </div>
+
+<!-- 1. Start screen -->
+  <div id="startContainer">
+    <p class="writter">Juliusz Słowacki</p>
+    <h1>Król–Duch</h1>
+    <p id="jsValidate">Do uruchomienia gry wymagana jest obsługa JavaScript</p>
+    <script>
+      document.getElementById("jsValidate").innerHTML = "Kliknij, aby rozpocząć grę";
+    </script>
+  </div>
+
+<!-- 2. End screen  -->
+  <div id="endContainer" class="unseen">
+   <div class='summary'>
+      <h2 id="sum_deathDescription"></h2>
+      <p id="sum_gameSummary"></p>
+   </div>
+   <div class="endScreens" data-screen='1'>
+      <div class='endScreen'>
+        <p><b>Podsumowanie:</b></p>
+        <p>Strofa: <span id='sum_level'>0</span></p>
+        <p>Czas gry: <span id='sum_gameTime'>0</span></p>
+        <p>Zwerbowane sługi: <span id='sum_mercsHired'>0</span></p>
+        <p>Zdobyte przedmioty: <span id='sum_foundedItems'>0</span></p>
+        <p>Wypite wywary: <span id='sum_drinkedPotions'>0</span></p>
+        <p>Odczytane pooematy: <span id='sum_usedPoems'>0</span></p>
+      </div>
+
+       <div class='endScreen'>
+        <p><b>Podsumowanie cd:</b></p>
+        <p>Wydane pieniądze: <span id='sum_moneySpent'>0</span></p>
+        <p>Liczba twoich ataków: <span id='sum_heroAttacks'>0</span></p>
+        <p>Liczba ataków sług: <span id='sum_mercsAttacks'>0</span></p>
+        <p>Ciosy krytyczne: <span id='sum_critics'>0</span></p>
+        <p>Ulubiona broń:<br />
+        <span id="sum_favouriteItem">0</span>
+        </p>
+         <p>Ulubiony poemat:<br />
+        <span id="sum_favouritePoem">0</span>
+        </p>
+      </div>
+
+       <div class='endScreen'>
+        <p>Obraz:<br />Tymon Niesiołowski, "Król-Duch", 1909<br />Muzeum Narodowe, Warszawa</p>
+        <p>Grafika:<br />Grzegorz Dzięgelewski</p>
+        <p>Dźwięk:<br />freesound.org<br /></p>
+      </div>
+
+      <div class='endScreen'>
+        <p>Fragmenty<br />rapsodu pierwszego<br />"Króla-Ducha" za:<br />
+        <a href='http://pl.wikisource.org/wiki/Król-Duch' target="_blank">pl.wikisource.org/wiki/Król-Duch</a>
+        <br />(warto!)</p>
+        <p>Poematy:<br />Juliusz Słowacki<br />Adam Mickiewicz<br />Cyprian Norwid<br />Kornel Ujejski<br />i inni</p>
+       <p>Dziękuję za grę!<br />GD</p>
+     </div>
+
+      <div class='summaryOrbs'>
+        <div data-page='1'></div>
+        <div data-page='2'></div>
+        <div data-page='3'></div>
+        <div data-page='4'></div>
+      </div>
+
+      <div class="summaryArrow left"><div class="arrow-left"></div></div>
+      <div class="summaryArrow right"><div class="arrow-right"></div></div>
+    </div>
+      <p class='retry'><a href="javascript:location.reload()" class="newgame">Zagraj ponownie</a></p>
+    </div>
+
+
+<!-- 3. Game screen-->
+
+
+<div id="gameContainer" class="unseen">
+<div class="statsContainer"> 
+  <div>
+<h3>Współczynniki bohatera</h3>
+<p id="maxhealth">Witalność: <span></span></p>  
+<p id="attack">Atak: <span></span></p>  
+<p id="defense">Obrona: <span></span></p>  
+<p id="artism">Artyzm: <span></span></p>
+<div class='specialSkills'>
+<p data-descr="magicAttack" id="magicAttack">Atak magiczny: <span></span></p>  
+<p data-descr="acceleration" id="acceleration">Przyspieszenie: <span></span></p>  
+<p data-descr="herbalism" id="herbalism">Zielarstwo: <span></span></p>  
+<p data-descr="wealth" id="wealth">Bogactwo: <span></span></p>  
+<p data-descr="discount" id="discount">Negocjacje: <span></span></p>  
+<p data-descr="medicine" id="medicine">Żywotność sług: <span></span></p>  
+<p data-descr="regeneration" id="regeneration">Regeneracja: <span></span></p>
+<p data-descr="critic" id="critic">Cios krytyczny: <span></span>%</p>
+</div>
+  </div>
+</div>
+
+<!-- Clickable eagle -->
+
+<div class="eagleContainer">
+  <div class="eagle-click" data-descr="eagle">
+    <svg class="eagleShape"
+       viewBox="0 0 200 130"
+       height="130"
+       width="200">
+     
+      <g
+         transform="translate(1.5516465,-33.790769)"
+         id="layer1">
+        <a transform="matrix(0.75199154,0,0,0.81250004,-2.4268899,-201.48207)">
+          <path
+             class="eagleContour"
+             d="m 135.39085,449.00219 c -0.76773,-0.94264 -1.9084,-3.99563 -1.9084,-5.10779 0,-1.72994 -0.69716,-1.62209 -1.76204,0.2726 -0.89286,1.58863 -1.19413,1.78762 -2.70653,1.78762 -0.93601,0 -1.85272,-0.1509 -2.03715,-0.33533 -0.18443,-0.18443 -1.17553,-0.53998 -2.20244,-0.79011 -2.19114,-0.53371 -2.45694,-1.14485 -2.55411,-5.8727 l -0.065,-3.16046 -0.87293,1.65239 c -0.95927,1.81583 -2.76416,3.42559 -4.26244,3.80164 -0.59601,0.14958 -2.07888,-0.33581 -3.87721,-1.26917 l -2.91207,-1.51139 0.0219,-2.01397 c 0.0121,-1.10769 0.17937,-2.82666 0.37183,-3.81995 l 0.34992,-1.80597 -1.61951,1.6931 c -1.37912,1.44178 -1.90708,1.6931 -3.55677,1.6931 -2.47085,0 -5.77617,-2.0046 -6.605113,-4.00585 -0.52764,-1.27385 -0.473905,-1.6474 0.528326,-3.67254 0.613657,-1.23995 1.088167,-2.25446 1.054487,-2.25446 -0.0337,0 -0.85826,0.40635 -1.832398,0.90299 -2.484302,1.26657 -3.465696,1.13549 -5.070569,-0.67724 -0.76946,-0.86912 -1.728117,-1.58022 -2.130343,-1.58022 -0.618419,0 -0.686106,-0.36593 -0.438454,-2.37034 0.270773,-2.1916 0.554943,-2.64271 3.768359,-5.98228 5.186085,-5.38968 5.255725,-5.55981 1.502139,-3.66953 -4.099278,2.06436 -5.704671,2.13265 -6.660991,0.28333 -0.385236,-0.74496 -0.898381,-1.35448 -1.140327,-1.35448 -0.830382,0 -0.439227,-1.94736 0.688003,-3.42524 0.620348,-0.81332 3.515545,-2.94663 6.433775,-4.74069 2.91823,-1.79406 6.073736,-3.78904 7.012246,-4.43327 0.93851,-0.64423 2.06549,-1.37451 2.50441,-1.62283 1.82225,-1.03097 9.04206,-6.31185 8.86769,-6.48623 -0.10401,-0.104 -0.44798,0.0196 -0.76438,0.27461 -0.97157,0.78312 -3.43343,1.11472 -5.8294,0.78519 -1.98329,-0.27278 -2.40513,-0.52089 -3.21269,-1.88962 -0.77081,-1.30641 -0.99859,-1.45243 -1.33315,-0.8546 -0.50927,0.91002 -2.32714,0.93597 -3.06759,0.0438 -0.309127,-0.37248 -1.101487,-0.67724 -1.760789,-0.67724 -1.661455,0 -2.887493,-0.97321 -3.639041,-2.88862 -0.390321,-0.9948 -0.941417,-1.62633 -1.419172,-1.62633 -0.429583,0 -1.160817,-0.52132 -1.624963,-1.15849 -1.015462,-1.39401 -5.597909,-3.35145 -7.852672,-3.35435 -1.047735,-0.001 -1.912814,-0.32219 -2.440316,-0.90508 -0.449456,-0.49664 -1.293632,-0.90298 -1.87595,-0.90298 -0.582303,0 -1.058744,-0.20317 -1.058744,-0.45149 0,-0.24833 -0.374742,-0.4515 -0.832762,-0.4515 -0.458016,0 -1.377617,-0.46818 -2.043555,-1.0404 -0.665937,-0.57223 -2.273429,-1.57847 -3.572198,-2.2361 -1.369937,-0.69366 -2.707252,-1.78116 -3.18512,-2.59012 -0.521127,-0.8822 -1.313815,-1.49246 -2.157883,-1.66128 -0.733795,-0.14676 -1.606773,-0.65602 -1.939953,-1.1317 -0.474675,-0.67769 -1.540834,-0.97109 -4.92611,-1.35564 -4.172972,-0.47402 -4.324996,-0.5309 -4.457316,-1.66767 -0.09028,-0.7756 -0.444897,-1.21969 -1.039976,-1.30238 -4.638617,-0.64449 -6.183643,-1.18494 -6.612565,-2.31309 -0.580718,-1.52742 -0.978353,-1.73368 -4.023449,-2.08711 -1.412378,-0.16392 -3.218401,-0.69359 -4.013386,-1.17705 -1.247435,-0.75861 -1.426674,-1.09666 -1.308542,-2.46784 0.1675,-1.94416 -0.305722,-2.28114 -3.767776,-2.68295 -2.082051,-0.24165 -2.819035,-0.5481 -3.548558,-1.47554 -1.2249,-1.55721 -0.970775,-2.78603 0.825936,-3.99384 l 1.480785,-0.99543 -2.393736,-0.69588 c -1.316553,-0.38273 -3.506695,-0.92905 -4.866982,-1.21405 -3.098484,-0.64916 -4.596845,-1.92792 -4.41334,-3.7665 0.116297,-1.16521 0.464095,-1.47663 2.617333,-2.34353 2.443628,-0.98381 2.461619,-1.00447 1.128733,-1.29587 -9.700785,-2.12081 -12.867549,-3.5722 -12.867549,-5.89743 0,-1.29497 0.727904,-1.723 4.261876,-2.5061 l 2.681655,-0.59423 -2.907401,-0.7597 c -3.201035,-0.83643 -8.7799704,-3.26814 -10.018412,-4.36676 -0.4345638,-0.3855 -0.7901127,-1.15748 -0.7901127,-1.7155 0,-1.21465 1.6528832,-1.906 5.5307887,-2.31334 1.427845,-0.14999 2.596085,-0.44693 2.596085,-0.65987 0,-0.21295 -0.318885,-0.38718 -0.708628,-0.38718 -1.515824,0 -7.3092155,-2.80415 -9.5617643,-4.62815 -2.72819492,-2.20914 -3.15182895,-3.73714 -1.1737625,-4.2336 0.6587066,-0.16533 4.033414,-0.16522 7.499352,2.3e-4 l 6.3017038,0.30082 -4.451739,-2.30785 c -4.2938745,-2.22602 -9.0063591,-5.72929 -9.5250378,-7.08094 -0.3534359,-0.92104 0.6976288,-1.44974 2.8981222,-1.45779 1.7031001,-0.006 5.3090186,0.83389 15.4941476,3.60992 5.154449,1.40488 5.525743,1.00677 1.48747,-1.59492 -1.935553,-1.247 -4.479637,-2.74578 -5.653515,-3.33062 -2.88366,-1.43668 -5.40467,-3.93056 -5.227671,-5.17141 0.281967,-1.97668 4.762912,-0.80061 15.263124,4.00594 10.884219,4.98233 22.888539,10.97256 32.507491,16.22144 15.365498,8.38466 16.193911,8.82738 16.517671,8.82738 0.306376,0 0.08641,-2.08857 -0.511162,-4.85355 -0.281229,-1.30126 -0.206495,-1.46735 0.660282,-1.46735 2.980778,0 10.798609,6.66635 16.14913,13.77053 3.301522,4.38361 6.326178,7.67732 7.681892,8.36519 0.695911,0.3531 1.839601,1.10423 2.541531,1.66919 0.70193,0.56496 1.56542,1.0272 1.91885,1.0272 0.38444,0 0.64259,0.45345 0.64259,1.12873 0,0.93962 0.21533,1.12874 1.28512,1.12874 0.70682,0 2.94816,0.81268 4.98077,1.80597 2.03261,0.99328 4.07335,1.80597 4.53499,1.80597 0.46163,0 1.72467,0.39637 2.80674,0.88083 l 1.96741,0.88084 1.179,-1.29083 c 2.05158,-2.24621 4.47569,-3.1798 8.25646,-3.1798 3.63581,0 5.19835,0.4088 6.61807,1.73148 1.32409,1.23357 3.94032,1.88046 7.60517,1.88046 3.0007,0 3.5698,-0.16926 7.84875,-2.33438 2.53741,-1.28391 4.68119,-2.50294 4.76396,-2.70896 0.0828,-0.20602 0.45708,-0.37457 0.83178,-0.37457 0.3747,0 1.19786,-0.40634 1.82923,-0.90299 0.63138,-0.49664 1.39383,-0.90298 1.69434,-0.90298 0.30051,0 0.91411,-0.40635 1.36357,-0.90299 0.44945,-0.49664 0.97914,-0.90298 1.17707,-0.90298 0.99606,0 7.10249,-4.85782 11.91622,-9.47965 7.58062,-7.27841 14.43478,-11.74052 18.0344,-11.74052 1.85208,0 1.93367,0.29405 0.71336,2.57089 -0.49071,0.91555 -0.8371,1.71973 -0.76976,1.78707 0.15655,0.15655 8.0445,-3.12347 14.75524,-6.13563 10.90558,-4.89505 38.08813,-14.70819 45.73965,-16.51242 3.99832,-0.94281 6.18204,-0.89128 6.18204,0.1459 0,0.45018 -0.55872,1.35164 -1.2416,2.00324 -1.25786,1.20023 -5.70991,3.48664 -6.80487,3.49473 -0.66709,0.005 -4.72198,2.28573 -4.48499,2.52272 0.14348,0.14348 2.37063,-0.30119 9.25814,-1.84846 1.67616,-0.37655 4.72374,-0.81307 6.77239,-0.97005 l 3.72482,-0.28541 0,1.10302 c 0,1.77706 -3.81557,4.43436 -9.7071,6.76039 l -3.16045,1.24777 5.19217,0.0714 c 5.9793,0.0822 7.38103,0.36664 7.60769,1.5436 0.28034,1.45564 -4.43066,4.34729 -9.63941,5.91676 -1.48993,0.44894 -2.87535,0.95492 -3.07871,1.12441 -0.20337,0.16948 1.09805,0.52601 2.89204,0.79227 3.58338,0.53185 4.73448,1.26853 4.26981,2.73259 -0.5372,1.69255 -3.56239,3.19416 -10.29117,5.10821 -1.74757,0.49711 -2.29679,1.27347 -0.90298,1.27645 1.28808,0.003 3.72481,1.72369 3.72481,2.63066 0,1.70202 -2.73132,3.2381 -8.46329,4.75973 l -3.94901,1.0483 1.46547,0.75783 c 1.12725,0.58292 1.46548,1.05161 1.46548,2.03073 0,1.8532 -1.33111,2.78165 -5.51973,3.85003 l -3.72071,0.94903 0.13639,1.87146 c 0.1671,2.29274 -0.71211,3.05155 -4.40756,3.80398 -3.74225,0.76197 -4.58144,1.25845 -4.26412,2.52275 0.70534,2.8103 -0.44315,3.65598 -6.32821,4.65974 -2.75406,0.46974 -3.88862,1.06609 -3.88862,2.04396 0,0.6673 -1.41113,1.11128 -3.55956,1.11995 -1.90333,0.008 -5.06237,0.9249 -4.77681,1.38693 0.11683,0.18905 0.0884,0.66681 -0.0631,1.0617 -0.21414,0.55802 -0.95331,0.71798 -3.31769,0.71798 -2.50898,0 -3.19131,0.1648 -3.89309,0.94026 -0.46801,0.51714 -1.49955,1.21127 -2.29233,1.54252 -0.79276,0.33123 -1.79212,1.13753 -2.2208,1.79177 -0.88135,1.34511 -2.84538,2.49785 -4.25583,2.49785 -0.58168,0 -1.24281,0.52478 -1.71552,1.3617 -0.57028,1.00967 -1.20368,1.43261 -2.45008,1.63599 -0.92453,0.15086 -2.33541,0.75712 -3.13529,1.34725 -0.79988,0.59013 -2.04593,1.07297 -2.76899,1.07297 -0.86454,0 -1.61864,0.38646 -2.20252,1.12873 -0.51152,0.6503 -1.35253,1.12874 -1.98412,1.12874 -0.73708,0 -1.90979,0.83325 -3.57918,2.54313 -1.36559,1.39871 -2.48291,2.71933 -2.48291,2.9347 0,0.21537 -0.6991,0.39157 -1.55357,0.39157 -0.85447,0 -1.67915,0.20318 -1.83262,0.4515 -0.15347,0.24832 -0.96446,0.45149 -1.8022,0.45149 -1.08752,0 -1.59926,0.23979 -1.78925,0.83842 -0.14636,0.46114 -0.69842,1.03133 -1.2268,1.26711 -0.83828,0.37404 -0.36235,0.72169 3.73474,2.72809 2.5825,1.26469 7.53986,3.57487 11.01635,5.13374 10.58477,4.74626 12.48756,6.43181 9.8647,8.73852 -0.8557,0.75255 -1.83414,1.13605 -2.92266,1.14554 -1.95714,0.0171 -5.39912,-1.1143 -6.06191,-1.99253 -0.39696,-0.526 -5.16216,-1.75329 -5.50486,-1.41779 -0.0604,0.0591 1.95368,1.51416 4.4757,3.2334 4.81843,3.28467 6.12699,4.45073 9.00015,8.01999 2.07304,2.57531 2.34206,4.36151 0.65688,4.36151 -0.60615,0 -1.20995,0.17453 -1.34179,0.38784 -0.13183,0.21331 -1.39867,0.52405 -2.81521,0.69054 -2.51752,0.29588 -2.64684,0.25528 -5.74253,-1.80322 l -3.167,-2.10591 1.55352,1.91004 c 4.75307,5.84388 4.97994,6.85588 2.40616,10.73344 -1.33214,2.00696 -1.80728,2.40915 -2.59609,2.19749 -0.53103,-0.14249 -1.30948,-0.26185 -1.72989,-0.26524 -0.4204,-0.004 -1.98217,-1.13362 -3.47058,-2.51163 l -2.7062,-2.50547 1.54347,3.74707 c 1.9057,4.62643 1.92911,5.42549 0.19809,6.76031 -0.74905,0.57761 -1.94661,1.50734 -2.66126,2.06606 -2.03494,1.59096 -3.2914,1.32794 -5.39195,-1.12873 l -1.83372,-2.14459 0.23326,3.61194 c 0.1283,1.98657 0.0688,3.81512 -0.13211,4.06344 -0.49053,0.60614 -4.51393,2.48321 -5.32263,2.48321 -1.51767,0 -3.05583,-1.21223 -4.1958,-3.30673 l -1.22196,-2.24515 -0.31511,1.98583 c -1.44075,9.07965 -1.60797,9.43546 -4.43448,9.43546 -1.59398,0 -1.80757,-0.15076 -2.52847,-1.78472 -0.82763,-1.87586 -1.53538,-2.01906 -1.53538,-0.31065 0,0.55648 -0.24381,1.25559 -0.54179,1.55358 -0.71385,0.71385 -4.18731,0.69743 -4.7737,-0.0226 z M 103.90967,340.75676 c 0.15347,-0.24832 0.0639,-0.45149 -0.19911,-0.45149 -0.26297,0 -0.47813,0.20317 -0.47813,0.45149 0,0.24832 0.0896,0.45149 0.19909,0.45149 0.10951,0 0.32467,-0.20317 0.47815,-0.45149 z"
+              />
+        </a>
+      </g>
+    </svg>
+  </div>  
+</div> 
+
+ <div class="consolesContainer">
+  
+  <div class="log-wrapper">
+    <div id="konsolaLOG">
+      <div class="logsDiv"></div>
+    </div>
+  </div>
+
+  <div class="info-wrapper">
+  <div id="konsolaINFO" class="unseen">
+    <div id="hoverInfo">
+      <h2></h2>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      
+      <div id="lyrics">
+        <h2></h2>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <div>
+          
+          <div class="expBar">
+            <div></div>
+          </div>
+          <p>do kolejnej strofy: <span id="dmg">0</span>/<span id="dmg-needed">100</span></p>
+        </div>
+      </div>
+
+      <div id="sell">
+        <p>Kliknij prawym przyciskiem, aby sprzedać ten przedmiot za <span>0</span></p>
+     </div>
+
+     <div id="heroHealth">
+        <p>Aktualna witalność: <span>500</span></p>
+     </div>
+  </div>
+
+
+  </div>
+
+  </div>
+  </div>
+
+
+
+
+<!-- Pasek najemników -->
+ <div class="mercenariesContainer">
+
+ <div class="ownedObols"><p>0</p></div>
+
+ <div class="mercColumn">
+    <div class="mercenary" data-descr="mercenary" id="merc0">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc1">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc2">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc3">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc4">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+ </div>
+ <div class="mercColumn">
+    <div class="mercenary" data-descr="mercenary" id="merc5">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc6">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc7">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc8">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+   <div class="mercenary" data-descr="mercenary" id="merc9">
+    <div class="merc-image unhired"></div>
+    <p class="amount">0</p>
+    <p class="price">100</p>
+    <p class="attack"><span>0</span></p>
+  </div>
+ </div>
+
+
+</div>
+
+<!-- Inventory -->
+<div class="inventoryContainer">
+  <div class="inventory"></div>
+</div>
+
+
+
+<div class="heroContainer">
+
+  <div class="onHero">
+      <div class="slot weapon"></div>
+      <div class="slot armor"></div>
+      <div class="slot pen"></div>
+  </div>
+  <div class="poem-slot">
+      <!-- <div></div>
+      <div></div>
+      <div></div> -->
+  </div>
+</div>
+
+<!-- Pasek życia -->
+
+<div id="health" data-descr="health"></div>
+<div class="fogContainer"></div>
+<div class="pickContainer">
+  <button class='choosingQuit'><span>x</span></button>
+  <h1>Który poemat stworzyć?</h1>
+  <div class='pickPoemInfo'>
+    <div class="veinLevel">
+      <h2>Siła weny: <span>0</span></h2>
+      <p>Im wyższy jest twój Artyzm w momencie przyjścia weny, tym wspanialsze wersy możesz napisać z jego pomocą.<span class='noSpace'><br /><br />Zwolnij miejsce w inwentarzu!</span></p>
+
+    </div>
+    <h2 class='newPoemInfo'></h2>
+    <p class='newPoemInfo'></p>
+    <p class='newPoemInfo duration'></p>
+    <p class='newPoemInfo'></p>
+  </div>
+  <div class='options'>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  </div>
+
+</div>
+
+<div class="fastStateContainer">
+  <p></p>
+</div>
+
+
+</div>
+<!-- 5. Volume -->
+<div id='volumeContainer' data-descr="volume"><span>♪</span></div>
+</div>
+
+
+
+
+ <audio id="swap">
+  <source src="sounds/itemchange.mp3" type="audio/mpeg">
+</audio>
+<audio id="drink">
+  <source src="sounds/potiondrink.mp3" type="audio/mpeg">
+</audio> 
+<audio id="coin">
+  <source src="sounds/itemsell.mp3" type="audio/mpeg">
+</audio>
+<audio id="levelup">
+  <source src="sounds/warlevelup.mp3" type="audio/mpeg">
+</audio>
+<audio id="glass">
+  <source src="sounds/glass.mp3" type="audio/mpeg">
+</audio>
+<audio id="paper">
+  <source src="sounds/paper.mp3" type="audio/mpeg">
+</audio>
+<audio id="crush">
+  <source src="sounds/shatter.mp3" type="audio/mpeg">
+</audio>
+<audio id="tear">
+  <source src="sounds/tear.mp3" type="audio/mpeg">
+</audio>
+<audio id="treasure">
+  <source src="sounds/goldrain.mp3" type="audio/mpeg">
+</audio>
+<audio id="key">
+  <source src="sounds/key.mp3" type="audio/mpeg">
+</audio>
+<audio id="poem">
+  <source src="sounds/poem.mp3" type="audio/mpeg">
+</audio>
+<audio id="win">
+  <source src="sounds/win.mp3" type="audio/mpeg">
+</audio>
+<audio id="bell">
+  <source src="sounds/bell.mp3" type="audio/mpeg">
+</audio>
+<audio id="magic">
+  <source src="sounds/appear.mp3" type="audio/mpeg">
+</audio> 
+<audio id="turn">
+  <source src="sounds/turn.mp3" type="audio/mpeg">
+</audio>
+
+
+<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--build:js scripts/main.js -->
+<script type='text/javascript' src='scripts/partials/00_data.js'></script>
+<script type='text/javascript' src='scripts/partials/01_startgame.js'></script>
+<script type='text/javascript' src='scripts/partials/02_endgame.js'></script>
+<script type='text/javascript' src='scripts/partials/03_levelUp.js'></script>
+<script type='text/javascript' src='scripts/partials/04_consoles.js'></script>
+<script type='text/javascript' src='scripts/partials/05_hero-base.js'></script>
+<script type='text/javascript' src='scripts/partials/05_hero-refresh.js'></script>
+<script type='text/javascript' src='scripts/partials/06_enemy.js'></script>
+<script type='text/javascript' src='scripts/partials/07_mercenaries.js'></script>
+<script type='text/javascript' src='scripts/partials/08_inventory_armory.js'></script>
+<script type='text/javascript' src='scripts/partials/08_inventory_mechanics.js'></script>
+<script type='text/javascript' src='scripts/partials/09_poems_book.js'></script>
+<script type='text/javascript' src='scripts/partials/09_poems_effects.js'></script>
+<script type='text/javascript' src='scripts/partials/09_poems_pick.js'></script>
+<script type='text/javascript' src='scripts/partials/09_poems_theory.js'></script>
+<script type='text/javascript' src='scripts/partials/10_supporting.js'></script>
+<script type='text/javascript' src='scripts/partials/11_developer.js'></script>
+<script type='text/javascript' src='scripts/partials/12_resume.js'></script>
+<!-- endbuild -->
+
+</body>
+</html>

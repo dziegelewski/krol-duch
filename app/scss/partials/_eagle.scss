@@ -1,0 +1,26 @@
+.eagle-click {
+  cursor: pointer;
+
+  &.frozen .eagleShape .eagleContour {
+  	fill: #B1C6FD !important;
+  }
+
+  &.storm {
+  	filter:brightness(400%);
+  	-webkit-filter:brightness(400%);
+  }
+
+  &:hover .eagleShape {
+  	opacity: 1;
+  }
+}
+
+.eagleShape {
+  position: relative;
+  width: 200px;
+  opacity: 0.9;
+}
+
+.eagleContour {
+	fill: #fff;
+}

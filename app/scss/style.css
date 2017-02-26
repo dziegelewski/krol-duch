@@ -1,0 +1,653 @@
+body {
+  background-color: #bcccff;
+  font-size: 10px;
+  font-family: 'Autour One', sans-serif;
+  color: #222222; }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; }
+
+body::selection {
+  background: none;
+  color: none; }
+
+body::moz-selection {
+  background: none;
+  color: none; }
+
+.green {
+  background: green; }
+
+.clearfix {
+  clear: both; }
+
+.unseen {
+  display: none; }
+
+.clock {
+  color: blue;
+  font-weight: normal; }
+
+.bold {
+  font-weight: bold; }
+
+.hasitem {
+  cursor: pointer; }
+
+.iloscWskrzeszonychJednostek {
+  color: dimgray;
+  font-weight: bold; }
+
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; }
+
+#loader {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #fF5D4D;
+  -webkit-animation: spin 2s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  animation: spin 2s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */ }
+
+#loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #fF5D4D;
+  -webkit-animation: spin 3s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  animation: spin 3s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */ }
+
+#loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #fF5D4D;
+  -webkit-animation: spin 1.5s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  animation: spin 1.5s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */ }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(0deg);
+    /* IE 9 */
+    transform: rotate(0deg);
+    /* Firefox 16+, IE 10+, Opera */ }
+  100% {
+    -webkit-transform: rotate(360deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(360deg);
+    /* IE 9 */
+    transform: rotate(360deg);
+    /* Firefox 16+, IE 10+, Opera */ } }
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(0deg);
+    /* IE 9 */
+    transform: rotate(0deg);
+    /* Firefox 16+, IE 10+, Opera */ }
+  100% {
+    -webkit-transform: rotate(360deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(360deg);
+    /* IE 9 */
+    transform: rotate(360deg);
+    /* Firefox 16+, IE 10+, Opera */ } }
+.container {
+  height: 600px;
+  width: 1000px;
+  margin: 10px auto;
+  overflow: hidden;
+  transition: opacity 0.2s;
+  opacity: 0.2; }
+
+.startWrapper, .gameWrapper, .endWrapper {
+  height: 600px;
+  width: 1000px;
+  position: relative; }
+
+.startWrapper {
+  z-index: 8; }
+
+.endWrapper {
+  bottom: 600px;
+  font-size: 30px; }
+  .endWrapper p {
+    margin: 1em; }
+
+.gameWrapper {
+  bottom: 1200px; }
+
+#gameContainer, #startContainer, #endContainer {
+  height: 600px;
+  width: 1000px;
+  cursor: default; }
+
+#startContainer, #endContainer {
+  text-align: center;
+  color: #fF5D4D; }
+  #startContainer .writter, #endContainer .writter {
+    padding-top: 30px;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 1px #707070; }
+  #startContainer h1, #endContainer h1 {
+    margin-top: 50px;
+    font-size: 8rem;
+    font-family: 'Amarante', sans-serif;
+    text-shadow: 2px 2px 1px #707070; }
+  #startContainer #jsValidate, #endContainer #jsValidate {
+    margin-top: 150px;
+    font-size: 2rem;
+    text-shadow: 1px 2px 1px #707070; }
+  #startContainer:after, #endContainer:after {
+    content: "";
+    background: url("../images/start.jpg") no-repeat;
+    background-position: center;
+    display: block;
+    opacity: 0.85;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; }
+
+#gameContainer {
+  background-color: #ddddff;
+  padding: 5px; }
+
+.heroContainer, #options, .statsContainer, .consolesContainer, .mercenariesContainer, .inventoryContainer, .eagleContainer, #health, .specialContainer {
+  position: relative; }
+
+.statsContainer {
+  position: relative;
+  width: 360px;
+  height: 210px;
+  top: 5px;
+  left: 5px; }
+
+.eagleContainer {
+  padding: 0;
+  height: 165px;
+  width: 212px;
+  bottom: 160px;
+  left: 389px; }
+
+.consolesContainer {
+  height: 210px;
+  width: 360px;
+  left: 625px;
+  bottom: 370px; }
+
+.mercenariesContainer {
+  width: 410px;
+  height: 325px;
+  bottom: 365px;
+  left: 5px; }
+
+.inventoryContainer {
+  height: 325px;
+  width: 410px;
+  bottom: 690px;
+  left: 575px; }
+
+.heroContainer {
+  width: 145px;
+  height: 325px;
+  bottom: 1015px;
+  left: 422px; }
+
+#health {
+  border: none;
+  bottom: 1003px;
+  left: 5px;
+  width: 0px;
+  height: 25px;
+  background: url("../images/lifebar.png") no-repeat;
+  padding: 0; }
+
+#options {
+  width: 20px;
+  height: 20px;
+  bottom: 1804px;
+  left: 979px;
+  cursor: pointer;
+  z-index: 12; }
+
+.statsContainer {
+  font-size: 16px; }
+
+.eagle-click {
+  cursor: pointer; }
+
+.eagleShape {
+  position: relative;
+  border: 1px solid green;
+  width: 200px; }
+
+.eagleContour {
+  fill: #fff; }
+
+.mercenariesContainer:after {
+  content: "";
+  clear: both; }
+.mercenariesContainer .ownedObols {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 5px; }
+  .mercenariesContainer .ownedObols p {
+    font-size: 23px;
+    text-align: right;
+    margin-right: 200px; }
+    .mercenariesContainer .ownedObols p:after {
+      margin-left: 5px;
+      content: url("../images/obol.png"); }
+  .mercenariesContainer .ownedObols .increasing {
+    color: green; }
+  .mercenariesContainer .ownedObols .decreasing {
+    color: red; }
+.mercenariesContainer .mercColumn {
+  float: left;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; }
+.mercenariesContainer #merc0 .merc-image {
+  background-position: 0px 0; }
+.mercenariesContainer #merc1 .merc-image {
+  background-position: -50px 0; }
+.mercenariesContainer #merc2 .merc-image {
+  background-position: -100px 0; }
+.mercenariesContainer #merc3 .merc-image {
+  background-position: -150px 0; }
+.mercenariesContainer #merc4 .merc-image {
+  background-position: -200px 0; }
+.mercenariesContainer #merc5 .merc-image {
+  background-position: -250px 0; }
+.mercenariesContainer #merc6 .merc-image {
+  background-position: -300px 0; }
+.mercenariesContainer #merc7 .merc-image {
+  background-position: -350px 0; }
+.mercenariesContainer #merc8 .merc-image {
+  background-position: -400px 0; }
+.mercenariesContainer #merc9 .merc-image {
+  background-position: -450px 0; }
+.mercenariesContainer .mercenary {
+  width: 190px;
+  height: 52px;
+  background: #eeeeee;
+  margin: 2px; }
+  .mercenariesContainer .mercenary .merc-image {
+    height: inherit;
+    width: 49px;
+    float: left;
+    margin-right: 5px;
+    cursor: pointer;
+    background-image: url("../images/mercs.png"); }
+    .mercenariesContainer .mercenary .merc-image.unhired {
+      filter: brightness(20%) brightness(60%);
+      -webkit-filter: brightness(20%) brightness(60%); }
+  .mercenariesContainer .mercenary p {
+    font-size: 14px; }
+  .mercenariesContainer .mercenary p.price:after {
+    content: "";
+    background-image: url("../images/obol.png");
+    width: 15px;
+    height: 15px;
+    background-size: 15px 15px;
+    display: inline-block;
+    margin-left: 5px; }
+
+#merc0 {
+  display: none; }
+
+#merc1 {
+  display: none; }
+
+#merc2 {
+  display: none; }
+
+#merc3 {
+  display: none; }
+
+#merc4 {
+  display: none; }
+
+#merc5 {
+  display: none; }
+
+#merc6 {
+  display: none; }
+
+#merc7 {
+  display: none; }
+
+#merc8 {
+  display: none; }
+
+#merc9 {
+  display: none; }
+
+.inventoryContainer .inventory {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  overflow: hidden; }
+  .inventoryContainer .inventory > div {
+    float: left;
+    height: 73px;
+    width: 46px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 12px; }
+    .inventoryContainer .inventory > div:hover > div {
+      transform: scale(1.2); }
+    .inventoryContainer .inventory > div > div {
+      background-image: url("../images/equipspry.png");
+      width: 35px;
+      height: 54px;
+      margin: 0 auto; }
+      .inventoryContainer .inventory > div > div.poem {
+        background: none; }
+    .inventoryContainer .inventory > div p {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      bottom: 10px;
+      overflow: hidden; }
+    .inventoryContainer .inventory > div.w_regular p {
+      color: black; }
+    .inventoryContainer .inventory > div.w_half p:nth-child(2) {
+      color: black; }
+    .inventoryContainer .inventory > div.w_half p:nth-child(3) {
+      color: brown; }
+    .inventoryContainer .inventory > div.w_magick p:nth-child(2) {
+      color: black; }
+    .inventoryContainer .inventory > div.w_magick p:nth-child(3) {
+      color: purple; }
+    .inventoryContainer .inventory > div.w_music p:nth-child(2) {
+      color: black; }
+    .inventoryContainer .inventory > div.w_music p:nth-child(3) {
+      color: green; }
+    .inventoryContainer .inventory > div.a_regular p {
+      color: brown; }
+    .inventoryContainer .inventory > div.a_half p:nth-child(2) {
+      color: brown; }
+    .inventoryContainer .inventory > div.a_half p:nth-child(3) {
+      color: black; }
+    .inventoryContainer .inventory > div.p_regular p {
+      color: green; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='0'] div {
+    background-position: 0px -216px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='0'] p:after {
+    content: "0"; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='1'] div {
+    background-position: 0px -270px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='1'] p:after {
+    content: "1"; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='2'] div {
+    background-position: 0px -324px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='2'] p:after {
+    content: "2"; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='3'] div {
+    background-position: 0px -378px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='3'] p:after {
+    content: "3"; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='4'] div {
+    background-position: 0px -432px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='4'] p:after {
+    content: "4"; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='5'] div {
+    background-position: 0px -486px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='5'] p:after {
+    content: "5"; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='6'] div {
+    background-position: 0px -540px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount='6'] p:after {
+    content: "6"; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount="0"] div {
+    background-position: 0px -270px; }
+  .inventoryContainer .inventory .inkwell[data-potion-amount="6"] div {
+    background-position: 0px -486px; }
+  .inventoryContainer .inventory .key {
+    cursor: default; }
+    .inventoryContainer .inventory .key.finalKey {
+      cursor: pointer;
+      color: #fF5D4D;
+      font-family: 'Amarante', sans-serif; }
+  .inventoryContainer .inventory .key:nth-child(1) div {
+    background-position: 0px -540px; }
+  .inventoryContainer .inventory .key:nth-child(1) p:after {
+    content: "I"; }
+  .inventoryContainer .inventory .key:nth-child(2) div {
+    background-position: 0px -594px; }
+  .inventoryContainer .inventory .key:nth-child(2) p:after {
+    content: "II"; }
+  .inventoryContainer .inventory .key:nth-child(3) div {
+    background-position: 0px -648px; }
+  .inventoryContainer .inventory .key:nth-child(3) p:after {
+    content: "III"; }
+
+div.placeholder, div.antiplaceholder {
+  background-color: none;
+  cursor: default; }
+
+.potion p {
+  color: #fF5D4D; }
+.potion[data-potion-type='0'] div {
+  background-position: 0px 54px; }
+.potion[data-potion-amount="0"] p:nth-child(2):after {
+  content: "x0"; }
+.potion[data-potion-type='1'] div {
+  background-position: 0px 0px; }
+.potion[data-potion-amount="1"] p:nth-child(2):after {
+  content: "x1"; }
+.potion[data-potion-type='2'] div {
+  background-position: 0px -54px; }
+.potion[data-potion-amount="2"] p:nth-child(2):after {
+  content: "x2"; }
+.potion[data-potion-type='3'] div {
+  background-position: 0px -108px; }
+.potion[data-potion-amount="3"] p:nth-child(2):after {
+  content: "x3"; }
+.potion[data-potion-type='4'] div {
+  background-position: 0px -162px; }
+.potion[data-potion-amount="4"] p:nth-child(2):after {
+  content: "x4"; }
+.potion[data-potion-type='1'] p:nth-child(3):after {
+  content: "1500"; }
+.potion[data-potion-type='2'] p:nth-child(3):after {
+  content: "5000"; }
+.potion[data-potion-type='3'] p:nth-child(3):after {
+  content: "15000"; }
+.potion[data-potion-type='4'] p:nth-child(3):after {
+  content: "50000"; }
+
+.consolesContainer .log-wrapper, .consolesContainer .info-wrapper {
+  width: 100%;
+  height: 100%; }
+.consolesContainer #konsolaLOG {
+  position: relative;
+  height: 100%;
+  width: 100%; }
+  .consolesContainer #konsolaLOG ::-webkit-scrollbar {
+    width: 1em; }
+  .consolesContainer #konsolaLOG ::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 0; }
+  .consolesContainer #konsolaLOG ::-webkit-scrollbar-thumb:hover {
+    background-color: #ccc; }
+  .consolesContainer #konsolaLOG ::-webkit-scrollbar-track {
+    background-color: transparent; }
+  .consolesContainer #konsolaLOG .logsDiv {
+    width: inherit;
+    height: inherit;
+    overflow-y: scroll; }
+    .consolesContainer #konsolaLOG .logsDiv p {
+      font-size: 12px;
+      margin: 5px 5px;
+      padding-left: 41px;
+      text-indent: -41px;
+      line-height: 150%; }
+      .consolesContainer #konsolaLOG .logsDiv p:first-letter {
+        text-transform: uppercase; }
+  .consolesContainer #konsolaLOG .levelSeparator {
+    width: 100%;
+    height: 12px;
+    background-color: red;
+    margin: 5px 0; }
+  .consolesContainer #konsolaLOG .clock {
+    font-family: "Courier"; }
+.consolesContainer #konsolaINFO {
+  position: relative;
+  bottom: 200px;
+  height: 210px;
+  width: 360px;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  overflow: hidden; }
+  .consolesContainer #konsolaINFO #hoverInfo {
+    padding: 5px;
+    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 5px;
+    padding-bottom: 15px; }
+    .consolesContainer #konsolaINFO #hoverInfo h2:first-letter {
+      text-transform: uppercase; }
+    .consolesContainer #konsolaINFO #hoverInfo > div {
+      display: none; }
+    .consolesContainer #konsolaINFO #hoverInfo.lyricsScreen #lyrics {
+      display: block; }
+    .consolesContainer #konsolaINFO #hoverInfo.mercsScreen p:nth-child(3) {
+      color: blue; }
+    .consolesContainer #konsolaINFO #hoverInfo.healthScreen #heroHealth {
+      display: block; }
+    .consolesContainer #konsolaINFO #hoverInfo.itemScreen #sell {
+      display: block;
+      padding-top: 10px;
+      font-size: 12px;
+      color: #555555; }
+      .consolesContainer #konsolaINFO #hoverInfo.itemScreen #sell span:after {
+        content: url("../images/obol.png");
+        margin-left: 7px; }
+
+.heroContainer .onHero {
+  width: 100%;
+  height: 180px;
+  text-align: center;
+  padding: 5px 0; }
+  .heroContainer .onHero .slot {
+    border: 1px solid black;
+    transform: scale(1.2);
+    height: 73px;
+    width: 46px;
+    text-align: center;
+    overflow: hidden; }
+    .heroContainer .onHero .slot.weapon {
+      margin: 10px auto; }
+    .heroContainer .onHero .slot.armor, .heroContainer .onHero .slot.pen {
+      display: inline-block;
+      margin: 9px; }
+    .heroContainer .onHero .slot > div {
+      height: 73px;
+      width: 46px;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      overflow: hidden;
+      font-size: 12px; }
+      .heroContainer .onHero .slot > div:hover > div {
+        transform: scale(1.2); }
+      .heroContainer .onHero .slot > div > div {
+        background-image: url("../images/equipspry.png");
+        width: 35px;
+        height: 54px;
+        margin: 0 auto; }
+        .heroContainer .onHero .slot > div > div.poem {
+          background: none; }
+      .heroContainer .onHero .slot > div p {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        bottom: 10px;
+        overflow: hidden; }
+      .heroContainer .onHero .slot > div.w_regular p {
+        color: black; }
+      .heroContainer .onHero .slot > div.w_half p:nth-child(2) {
+        color: black; }
+      .heroContainer .onHero .slot > div.w_half p:nth-child(3) {
+        color: brown; }
+      .heroContainer .onHero .slot > div.w_magick p:nth-child(2) {
+        color: black; }
+      .heroContainer .onHero .slot > div.w_magick p:nth-child(3) {
+        color: purple; }
+      .heroContainer .onHero .slot > div.w_music p:nth-child(2) {
+        color: black; }
+      .heroContainer .onHero .slot > div.w_music p:nth-child(3) {
+        color: green; }
+      .heroContainer .onHero .slot > div.a_regular p {
+        color: brown; }
+      .heroContainer .onHero .slot > div.a_half p:nth-child(2) {
+        color: brown; }
+      .heroContainer .onHero .slot > div.a_half p:nth-child(3) {
+        color: black; }
+      .heroContainer .onHero .slot > div.p_regular p {
+        color: green; }
+.heroContainer .poem-slot {
+  width: 100%;
+  height: 100px; }
+  .heroContainer .poem-slot div {
+    cursor: pointer;
+    margin: 12px 0;
+    margin-left: 6px;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    background-color: skyblue; }
+    .heroContainer .poem-slot div .line {
+      width: inherit;
+      height: inherit;
+      background-color: brown;
+      position: relative; }
+    .heroContainer .poem-slot div p {
+      font-size: 20px;
+      color: blue;
+      position: relative;
+      bottom: 35px; }
+
+/*# sourceMappingURL=style.css.map */

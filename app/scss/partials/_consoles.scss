@@ -1,0 +1,172 @@
+.consolesContainer {
+	@include gameFrame;
+	
+	.log-wrapper, .info-wrapper {
+		width: 100%;
+		height: 100%;
+
+		>div {
+
+		}
+	}
+
+	// -------------------------------
+	// LOG
+
+	#konsolaLOG {
+		position: relative;
+		height: 100%;
+ 	    width: 100%;
+		
+
+
+		::-webkit-scrollbar{width: 1em}
+		::-webkit-scrollbar-thumb{background-color:#edd;border-radius:0}
+		::-webkit-scrollbar-thumb:hover{background-color:#edd}
+		::-webkit-scrollbar-track{background-color:transparent}
+
+		scrollbar{width: 1em}
+		scrollbar-thumb{background-color:#edd;border-radius:0}
+		scrollbar-thumb:hover{background-color:#edd}
+		scrollbar-track{background-color:transparent}
+
+		.logsDiv {
+			width: inherit;
+			height: inherit;
+			overflow-y: scroll;
+			p {
+				font-size: 12px;
+				margin: 5px 15px;
+				line-height: 150%;
+				&:first-letter {
+					// text-transform: uppercase;
+				}
+			}
+		}
+
+		.levelSeparator {
+			width: 100%;
+			height: 8px;
+			// border-bottom: 5px dotted $bgr;
+			background-color: $red;
+			margin: 15px 0;
+		}
+
+	}
+
+	// -------------------------
+	// INFO
+
+	#konsolaINFO {
+		position: relative;
+		bottom: 210px;
+ 		height: 100%;
+ 		width: 100%;
+ 		text-align: center;
+ 		overflow: hidden;
+
+		#hoverInfo {
+			padding: 5px;
+			$hover-font: 13px;
+			font-size: $hover-font;
+			font-weight: bold;
+			padding-bottom: 15px;
+
+			h2 {
+				margin-bottom: 10px;
+				margin-top: 10px;
+				&::first-letter {
+					text-transform: uppercase;
+  	  			}
+			}
+				
+  	  		& >div {
+				display: none;
+  	  		}
+			
+			// eagle mode
+  	  		&.lyricsScreen {
+  	  			white-space: nowrap;
+  	  			line-height: 150%;
+  	  			#lyrics {
+  	  				display: block;
+  	  				&>div {
+  	  					font-size: 11px;
+						.expBar {
+							width: 250px;
+							height: 4px;
+							background-color: darken(silver, 10%);
+							margin: auto;
+							&>div {
+							background-color: #4646FF;
+								width: 0px;
+								height: 100%;
+								// margin: auto;
+							}
+						}
+
+  	  					position: relative;
+  	  					top: 30px;
+  	  					p {
+  	  						margin-top: 8px;
+  	  					}
+  	  				}
+  	  			}
+
+  	  		}
+
+  	  		// mercenaries mode
+  	  		&.mercsScreen {
+  	  			p:nth-child(3) {
+  	  				color: blue;
+  	  				margin-top: 10px;
+  	  			}
+
+  	  			p:nth-child(4) {
+  	  				margin-top: 20px;
+  	  			}
+				
+  	  			p:nth-child(n+5) {
+  	  				color: #666;
+  	  			}
+
+  	  			p:nth-child(4) {
+  	  				margin-bottom: 10px;
+  	  			}
+
+  	  		}
+
+  	  		// health mode
+  	  		&.healthScreen {
+  	  			#heroHealth {
+  	  				display: block;
+  	  				margin-top: 10px;
+  	  			}
+  	  		}
+
+
+  	  		// item mode
+  	  		&.itemScreen {
+				#sell {
+					display: block;
+	  				margin-top: 20px;
+	  				color: #666;
+					span:after {
+						content: url("../images/obol.png");
+						margin-left: 7px;
+					}
+				}
+
+  	  		}
+
+  	  		// poem mode
+  	  		&.poemScreen {
+				p:nth-child(3) {
+					margin-top: 10px;
+					color: #666;
+				}
+
+  	  		}
+		}
+	}
+}

@@ -1,0 +1,257 @@
+$potion-color: $red;
+$attack-color: #222;
+$defence-color: lighten(brown, 10%);
+$magick-color: lighten(purple, 10%);
+$artism-color: darken(green, 10%);
+$ashes-color: #752BDD;
+$key-color: $red;
+
+@mixin item-box-size() {
+	height: 73px;
+	width: 46px;
+}
+
+
+@mixin inventory-box() {
+// background-color: skyblue;
+			@include item-box-size;
+			display: inline-block;
+			text-align: center;
+			cursor: pointer;
+			// overflow: hidden;
+			font-size: 12px;
+
+			&:hover > div {
+				transform: scale(1.2);
+			}
+
+
+			&>div {
+	  			background-image: url("../images/equipspry.png");
+	  			width: 35px;
+	  			height: 54px;
+	  			margin: 0 auto;
+				
+
+	  			&.poem {
+	  				
+	  			}
+
+
+			}
+			
+			
+			p {
+				margin: 0;
+				padding: 0;
+				position: relative;
+				bottom: 10px;
+				overflow: hidden;
+			}
+
+			&.w_regular p {
+				color: $attack-color;
+			}
+
+			&.w_half {
+				p:nth-child(2) {
+					color: $attack-color;
+				}
+				p:nth-child(3) {
+					color: $defence-color;
+				}
+			}
+
+			&.w_magick {
+				p:nth-child(2) {
+					color: $attack-color;;
+				}
+				p:nth-child(3) {
+					color: $magick-color;
+				}
+			}
+
+			&.w_music {
+				p:nth-child(2) {
+					color: $attack-color;;
+				}
+				p:nth-child(3) {
+					color: $artism-color;
+				}
+			}
+
+			&.a_regular {
+				p {
+					color: $defence-color;
+				}
+			}
+
+			&.a_half {
+				p:nth-child(2) {
+					color: $defence-color;
+				}
+				p:nth-child(3) {
+					color: $attack-color;;
+				}
+			}
+
+			&.p_regular {
+				p {
+					color: $artism-color;
+				}
+			}
+
+
+			&.poem p {
+			
+			}
+		
+
+
+
+
+};
+
+.inventoryContainer {
+
+	.inventory {
+		@include gameFrame;
+		background-color: $bgr;
+		
+		// display: flex;
+		// flex-direction: row;
+		// flex-wrap: wrap;
+		// justify-content: flex-start;
+		width: 100%;
+		height: 100%;
+		padding: 5px;
+		overflow: hidden;
+		&>div {
+			float: left;
+
+			&:nth-child(n+33) {
+				visibility: hidden;
+			}
+
+			@include inventory-box;
+
+		}
+
+	.inkwell {
+		@for $j from 0 through 6 {
+			&[data-potion-amount='#{$j}'] {
+				div {
+					background-image: url("../images/equipspryInkwell.png");
+					background-position: 0px ($j)*-54px;
+				}
+				p:after {
+					content: "" + $j
+				}
+			}
+		}
+		
+			&[data-potion-amount="0"] div {
+				background-position: 0px 5*-54px;
+			}
+			&[data-potion-amount="6"] div {
+				background-position: 0px 9*-54px;
+			}
+
+
+		
+
+
+
+	}
+
+
+	.key {
+		cursor: default;
+		&.finalKey {
+		cursor: pointer;
+		color: $key-color;
+		font-family: 'Amarante', sans-serif;
+		}
+	}
+
+	.key:nth-child(1) {
+		div {
+			background-position: 0px (9)*-54px; 
+		}
+		p:after {
+		content: "I";
+		}
+	}
+
+	.key:nth-child(2) {
+		div {
+			background-position: 0px (9+1)*-54px; 
+		}
+		p:after {
+		content: "II";
+		}
+	}
+
+	.key:nth-child(3) {
+		div {
+			background-position: 0px (9+2)*-54px; 
+		}
+		p:after {
+		content: "III";
+		}
+	}
+
+		.poem {
+				background: none;
+			}
+	}
+
+}
+
+div.placeholder, div.antiplaceholder {
+background-color: none;
+cursor: default;
+}
+
+div.antiplaceholder  {
+// width: 1px;
+}
+
+.potion {
+	p {
+		color: $potion-color;	
+	}
+	
+	@for $j from 0 through 4 {
+		&[data-potion-type='#{$j}'] div {
+			background-position: 0px ($j - 1)*-54px;
+		}
+
+		&[data-potion-amount="#{$j}"] p:nth-child(2):after {
+			content: "x" + $j;
+		}
+	}
+
+
+	&[data-potion-type='1'] p:nth-child(3):after {content: "1500";}
+	&[data-potion-type='2'] p:nth-child(3):after {content: "5000";}
+	&[data-potion-type='3'] p:nth-child(3):after {content: "15000";}
+	&[data-potion-type='4'] p:nth-child(3):after {content: "50000";}
+
+
+
+}
+
+.ashesOfMemory {
+	float: left;
+	p {
+		color: $ashes-color;
+		font-weight: bold;
+	}
+	div {
+		background-image: url("../images/equipspryInkwell.png") !important;
+	}
+
+}
+
+

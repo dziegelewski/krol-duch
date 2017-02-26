@@ -1,0 +1,121 @@
+.mercenariesContainer {
+	&:after {
+		content: "";
+		clear: both;
+	}
+	
+	.ownedObols {
+		@include gameFrame;
+		visibility: hidden;
+		width: 190px;
+		margin-left: 2px;
+		height: 30px;
+		margin-bottom: 5px;
+		p {
+			white-space: nowrap;
+			font-size: 19px;
+			margin-left: 5px;
+			&:after {
+				margin-left: 5px;
+				content: url("../images/obol.png");
+			}
+		}
+
+		.increasing {
+		color: green;
+		}
+		.decreasing {
+		color: red;
+		}
+	}
+
+
+	.mercColumn {
+		float: left;
+		height: 280px;
+		margin-right: 3px;
+		// display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+	
+	@for $i from 0 through 9 {
+		#merc#{$i} .merc-image {
+			$xpos : $i * -50px;
+			background-position: $xpos 0;
+		}
+	}
+
+	.mercenary {
+		@include gameFrame;
+		width: 190px;
+		height: 52px;
+		// background: #eeeeee;
+		margin: 5px 2px;
+
+		&:hover .merc-image {
+		opacity: 1;
+		}
+
+		&:hover .merc-image.unhired {
+		opacity: 0.4;
+		}
+
+		.merc-image {
+			height: inherit;
+			width: 49px;
+			float: left;
+			margin-right: 5px;
+			cursor: pointer;
+			background-image: url("../images/mercs.png");
+			position: relative;
+			opacity: 0.9;
+			
+
+			&.attack {
+			// filter: brightness(150%);
+			// -webkit-filter: brightness(150%);
+			// bottom: 1px;
+			// left: 1px;
+			}
+
+			&.unhired {
+			filter: grayscale(80%);
+			opacity: 0.3;
+			-webkit-filter: grayscale(80%);
+			} 
+		}
+
+		
+		p {
+			font-size: 14px;
+		}
+
+		$obolImgSize: 15px;
+		p.price:after {
+			content: "";
+			background-image: url("../images/obol.png");
+			width: $obolImgSize;
+			height: $obolImgSize;
+			background-size: $obolImgSize $obolImgSize;
+			display: inline-block;
+			margin-left: 5px;
+		}
+
+		p.attack:after {
+			content: "";
+			background-image: url("../images/sword.png");
+			width: 27px;
+			height: 15px;
+			background-size: 27px 15px;;
+			display: inline-block;
+			margin-left: 5px;
+		}
+	}
+}
+
+@for $i from 0 through 9 {
+	#merc#{$i} {
+		display: none;
+	}
+}

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+$base-color: #454545;
+$red: #fF5D4D;
+$gray: #555555;
+$bgr: #ccd;
+
+
+body {
+  background-color: #BDDEFC;
+  font-family: 'Autour One', sans-serif;
+  color: $base-color;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 0px;
+}
+
+body::selection {
+  background: none;
+  color: none;
+}
+
+body::-moz-selection {
+  background: none;
+  color: none;
+}
+
+@mixin gameFrame {
+  background-color: $bgr;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(255,255,255,1);
+-moz-box-shadow: 0px 0px 3px 1px rgba(255,255,255,1);
+box-shadow: 0px 0px 3px 1px rgba(255,255,255,1);
+  
+}
+
+
+
+.clearfix {
+    clear: both;
+}
+
+.unseen {
+  display: none;
+}
+
+
+.clock {
+  color: blue;
+  font-weight: normal;
+}
+
+
+
+.hasitem {
+  cursor: pointer;
+} 
+
+@import "partials/loader";
+@import "partials/containers";
+@import "partials/endContainer";
+@import "partials/subcontainers";
+@import "partials/stats";
+@import "partials/eagle";
+@import "partials/mercenaries";
+@import "partials/inventory";
+@import "partials/consoles";
+@import "partials/hero";
+@import "partials/poemPick";
+@import "partials/fastState";
+
+
+/*# sourceMappingURL=style.css.map */
