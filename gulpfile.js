@@ -3,10 +3,11 @@ var sass = require('gulp-sass');
 var useref = require('gulp-useref');
 var browserSync = require('browser-sync').create();
 var minify = require('gulp-minify');
+var cssmin = require('gulp-cssmin');
 
  
 // define tasks here
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'browserSync']);
 
 gulp.task('watch', function () {
   gulp.watch('app/scss/**/*.scss', ['sass']); 
@@ -55,7 +56,7 @@ gulp.task('copy-sounds', function () {
 gulp.task('sass', function(){
   return gulp.src('app/scss/*.scss')
     .pipe(sass()) // Using gulp-sass
-
+    .pipe(cssmin())
     .pipe(gulp.dest('dist/css'))
     .pipe(browserSync.reload({
       stream: true
@@ -67,7 +68,7 @@ gulp.task('sass', function(){
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'app'
+      baseDir: 'dist'
     },
   })
 })
