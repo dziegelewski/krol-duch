@@ -154,5 +154,3 @@ function useAshes () {
 	Hero.heal(0)
 
 }
-
-})

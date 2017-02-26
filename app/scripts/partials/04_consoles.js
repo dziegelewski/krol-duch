@@ -43,7 +43,7 @@ function bothState (message, bold) {
 // INFO
 
 var infoScreen = $('#hoverInfo')
-    header = $('#hoverInfo > h2')
+var header = $('#hoverInfo > h2')
 var info = header.next();
 var info2 = info.next();
 var info3 = info2.next();
@@ -178,7 +178,7 @@ $('body').on("mouseleave", "[data-descr]", function () {
 // -------------------
 // SWITCH
 
-blockConsoles = false;
+let blockConsoles = false;
 
 function showInfo() {
     if (blockConsoles) return

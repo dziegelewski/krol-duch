@@ -88,9 +88,9 @@ function losuj(a, b) {
 function getTime() {
 	var now = new Date;
 	if (now.getMinutes() < 10) {
-		return wynik = now.getHours() + ":0" + now.getMinutes();
+		return now.getHours() + ":0" + now.getMinutes();
 	} else {
-		return wynik = now.getHours() + ":" + now.getMinutes();
+		return now.getHours() + ":" + now.getMinutes();
 	}
 }
 

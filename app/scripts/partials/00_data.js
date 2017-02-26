@@ -1,11 +1,9 @@
-// 00. DATA
+// 00. DATA 
 // --------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------
-
-$(function () {
-
+// -------------------------------------------------------------------------------- 
+  
 var maxpack = 32;
-var itemsInGame = 0;
+var itemsInGame = 0; 
 var activeSelection;
 
 var obols = 0;
@@ -13,7 +11,7 @@ var earnings; // defined in Hero.refresh
 var allMercenariesNumber = 0;
 var deadsArray = [];
 var blockStates = false;
-
+ 
 var statistics = {
 	gameTime : 0,
 	heroAttacks: 0,
@@ -50,7 +48,7 @@ function update (whichCookieToUpdade, newValue) {
 			
 		}
 	}
-}
+} 
 
 function removeCookies () {
 	for (var i=0; i<cookiesArr.length; i ++) {
